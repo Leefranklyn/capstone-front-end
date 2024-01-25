@@ -5,15 +5,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Home } from './pages/Home'
 import { SignUp } from './pages/SignUp'
 import { Login } from './pages/Login'
+import { LoginNavComponent } from './components/LoginNavComponent';
 import 'typeface-roboto'
-
-// import './App.css'
 
 function App() {
   return (
     <div>
       <Router>
-        <NavComponent />
+        <RenderedComponent />
         <AnimatePresence mode='wait'>
         <Routes>
           <Route exact path="/" element={<Home />}/>
@@ -23,6 +22,15 @@ function App() {
         </AnimatePresence>
       </Router>
     </div>
+  )
+}
+
+function RenderedComponent() {
+  const location = useLocation();
+  return (
+    <>
+    {location.pathname === '/login' || location.pathname === "/signup" ? <LoginNavComponent /> : <NavComponent />}
+    </>
   )
 }
 
